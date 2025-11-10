@@ -1,0 +1,90 @@
+USE [msdb]
+GO
+
+/****** Object:  Job [16:00 R2_Archive]    Script Date: 9/12/2018 11:25:14 AM ******/
+BEGIN TRANSACTION
+DECLARE @ReturnCode INT
+SELECT @ReturnCode = 0
+/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 9/12/2018 11:25:15 AM ******/
+IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
+BEGIN
+EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
+END
+
+DECLARE @jobId BINARY(16)
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'16:00 R2_Archive', 
+		@enabled=0, 
+		@notify_level_eventlog=0, 
+		@notify_level_email=0, 
+		@notify_level_netsend=0, 
+		@notify_level_page=0, 
+		@delete_level=0, 
+		@description=N'Archive Load Process', 
+		@category_name=N'[Uncategorized (Local)]', 
+		@owner_login_name=N'AMERICAS\lopezliz', @job_id = @jobId OUTPUT
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+/****** Object:  Step [Run Archive Load Process]    Script Date: 9/12/2018 11:25:15 AM ******/
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Run Archive Load Process', 
+		@step_id=1, 
+		@cmdexec_success_code=0, 
+		@on_success_action=1, 
+		@on_success_step_id=0, 
+		@on_fail_action=2, 
+		@on_fail_step_id=0, 
+		@retry_attempts=0, 
+		@retry_interval=0, 
+		@os_run_priority=0, @subsystem=N'TSQL', 
+		@command=N'select * from tblArchive 
+truncate table tblArchive
+
+--This needs to be reset before running the monthend archive process.
+select * from lkLockInDate
+update lkLockInDate set FromDate = ''2015-10-01''
+
+--------------------------------------
+--Rename archive file
+EXEC MASTER..XP_CMDSHELL ''RENAME "F:\Applications\PIV_Transfer\Download\*Weekly PPM Rpt.xls" WeeklyPPMRpt.xls'' 
+
+--Run the vbscript to update the file.
+EXEC MASTER..XP_CMDSHELL ''CScript F:\Applications\PIV_Transfer\Download\UpdateArchiveFile.vbs''
+
+--Declare variables
+Declare @FromDate varchar(25), @strSQL VARCHAR(500), @SourceFile nvarchar(500), @DestinationFile nvarchar(500)
+
+--Set variables
+select @FromDate = CONVERT(varchar(6), FromDate,112) FROM lkLockInDate
+set @SourceFile = ''"F:\Applications\PIV_Transfer\Download\WeeklyPPMRpt.xls"''
+set @DestinationFile = '' F:\Applications\PIV_Transfer\Archive_Data\'' + @FromDate + ''"_WeeklyPPMRpt.xls"''
+
+--Load the data to the table.
+insert into R2_Reports..tblArchive(ProjectNumber, ProjectName, ResourceNumber, ResourceName, TaskName, SummaryTaskName, Date, Hours, TotalHours, BillingRate, PCT, Cost, ResourceRole, ResourceType, BillingCode, ResourceHourlyRate, ProgrammeProjectManager, AFEDescription, ProgrammeGroup, Programme, ProgrammeMgr, BusinessLead, UAVP, ITSABillingCat, FundingCategory, AFENumber)
+SELECT ProjectNumber, ProjectName, ResourceNumber, ResourceName, TaskName, SummaryTaskName, Date, Hours, TotalHours, BillingRate, PCT, Cost, ResourceRole, ResourceType, BillingCode, ResourceHourlyRate, ProgrammeProjectManager, AFEDescription, ProgrammeGroup, Programme, ProgrammeMgr, BusinessLead, UAVP, ITSABillingCat, FundingCategory, AFENumber FROM OPENDATASOURCE(''Microsoft.ACE.OLEDB.12.0'', ''Data Source=F:\Applications\PIV_Transfer\Download\WeeklyPPMRpt.xls;Extended Properties=Excel 8.0'')...[PPM_Weekly_Report$]
+----SELECT * INTO R2_Reports..tblArchive FROM OPENDATASOURCE(''Microsoft.ACE.OLEDB.12.0'', ''Data Source=F:\Applications\PIV_Transfer\Download\WeeklyPPMRpt.xls;Extended Properties=Excel 8.0'')...[PPM_Weekly_Report$]
+--select * from OPENDATASOURCE(''Microsoft.ACE.OLEDB.12.0'', ''Data Source=F:\Applications\PIV_Transfer\Download\WeeklyPPMRpt.xls;Extended Properties=Excel 8.0'')...[PPM_Weekly_Report$]
+
+--select * from tblArchive 
+--drop table tblArchive
+
+--When done loading data, move(or copy) the final close file to Sap_Compass_Data folder
+SET @strSQL = ''COPY '' + @SourceFile + '' '' + @DestinationFile 
+--SET @strSQL = ''MOVE '' + @SourceFile + '' '' + @NewSourceFile 
+exec xp_cmdshell @strSQL
+', 
+		@database_name=N'R2_Reports', 
+		@flags=0
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+COMMIT TRANSACTION
+GOTO EndSave
+QuitWithRollback:
+    IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
+EndSave:
+
+GO
+
+

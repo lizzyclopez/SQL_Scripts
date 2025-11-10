@@ -1,0 +1,90 @@
+USE [msdb]
+GO
+
+/****** Object:  Job [16:00 R2_Monthend Archive]    Script Date: 9/12/2018 11:26:02 AM ******/
+BEGIN TRANSACTION
+DECLARE @ReturnCode INT
+SELECT @ReturnCode = 0
+/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 9/12/2018 11:26:02 AM ******/
+IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
+BEGIN
+EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
+END
+
+DECLARE @jobId BINARY(16)
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'16:00 R2_Monthend Archive', 
+		@enabled=0, 
+		@notify_level_eventlog=0, 
+		@notify_level_email=0, 
+		@notify_level_netsend=0, 
+		@notify_level_page=0, 
+		@delete_level=0, 
+		@description=N'No description available.', 
+		@category_name=N'[Uncategorized (Local)]', 
+		@owner_login_name=N'AMERICAS\lopezliz', @job_id = @jobId OUTPUT
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+/****** Object:  Step [Copy Close Files and Load Data]    Script Date: 9/12/2018 11:26:02 AM ******/
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Copy Close Files and Load Data', 
+		@step_id=1, 
+		@cmdexec_success_code=0, 
+		@on_success_action=1, 
+		@on_success_step_id=0, 
+		@on_fail_action=2, 
+		@on_fail_step_id=0, 
+		@retry_attempts=0, 
+		@retry_interval=0, 
+		@os_run_priority=0, @subsystem=N'TSQL', 
+		@command=N'select * from tblArchive2 where ProjectDescription like ''%Tuning%''
+truncate table tblArchive2
+
+--This needs to be reset before running the monthend archive process.
+select * from lkLockInDate
+update lkLockInDate set FromDate = ''2015-10-01''
+
+--------------------------------------
+--Rename monthend final close file
+EXEC master..xp_cmdshell ''RENAME "F:\Applications\PIV_Transfer\Download\*Close Consolidated Tower Report.xls"  CloseConsolidatedTowerReport.xls'' 
+
+--Run the vbscript to update the file.
+EXEC MASTER..XP_CMDSHELL ''CScript F:\Applications\PIV_Transfer\Download\UpdateMonthendArchive.vbs''
+
+--Declare variables
+Declare @FromDate varchar(25), @LoadDate datetime, @strSQL VARCHAR(500), @SourceFile nvarchar(500), @DestinationFile nvarchar(500)
+
+--Set variables
+select @FromDate = CONVERT(varchar(6), FromDate,112) FROM lkLockInDate
+set @SourceFile = ''"F:\Applications\PIV_Transfer\Download\CloseConsolidatedTowerReport.xls"''
+set @DestinationFile = '' F:\Applications\PIV_Transfer\Archive_Data\'' + @FromDate + ''"_CloseConsolidatedTowerReport.xls"''
+
+--Load the data to the table.
+select @LoadDate = FromDate from lkLockInDate
+insert into R2_Reports..tblArchive2(LoadDate, ProgramGroup, Program, AFEDesc, ProjectDescription, ITSABillingCategory, FundingCategory, AFENumber, UAVP, BusinessLeadApproval, ProgramManager, TotalHours, TotalFTE, TotalFTP, ActualFTE, ApprvdFTE, EDSVariance, JrSEOnshore, JrSEOffshore, MidSEOnshore, MidSEOffshore, AdvSEOnshore, AdvSEOffshore, SenSEOnshore, SenSEOffshore, ConsArchOnshore, ConsArchOffshore, ProjLeadOnshore, ProjLeadOffshore, ProjMgrOnshore, ProjMgrOffshore, PgmMgrOnshore, PgmMgrOffshore, FTPStaffAugOnshore, FTPStaffAugOffshore)
+SELECT @LoadDate, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F13, F14, F15, F16, F17, F18, F19, F20, F21, F22, F23, F24, F25, F26, F27, F28, F29, F30, F31, F32, F33, F34
+--FROM OPENROWSET(''Microsoft.ACE.OLEDB.12.0'', ''Excel 8.0; HDR=NO; Database=F:\Applications\PIV_Transfer\Download\CloseConsolidatedTowerReport.xls'',[Consolidated$])
+FROM OPENROWSET(''Microsoft.ACE.OLEDB.12.0'', ''Excel 8.0; HDR=NO; Database=F:\Applications\PIV_Transfer\Download\CloseConsolidatedTowerReport.xls'',[''Consolidated $''])
+WHERE F4 is not NULL
+
+--When done loading data, move(or copy) the final close file to Sap_Compass_Data folder
+SET @strSQL = ''COPY '' + @SourceFile + '' '' + @DestinationFile 
+--SET @strSQL = ''MOVE '' + @SourceFile + '' '' + @NewSourceFile 
+exec xp_cmdshell @strSQL
+
+', 
+		@database_name=N'R2_Reports', 
+		@flags=0
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+COMMIT TRANSACTION
+GOTO EndSave
+QuitWithRollback:
+    IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
+EndSave:
+
+GO
+
+
