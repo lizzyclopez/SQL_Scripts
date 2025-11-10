@@ -1,0 +1,878 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/20/2015 5:23:22 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="USHOSEDS131C"
+  DTS:CreatorName="AMERICAS\lopezliz"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{7AACD5F5-3461-48BB-88CB-A9CE59A424EC}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="SSIS Package - Import COMPASS Test"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{C185F5D4-33C6-462B-97AF-7123B75ED2C2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3A59800F-722B-4755-98A0-A76CC8CD1786}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=USHOSEDS131C\PROD;Initial Catalog=R2_Import;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionExcel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5AF95709-F167-436C-BA5E-8A22FBE0AAA9}"
+      DTS:ObjectName="SourceConnectionExcel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=G:\Applications\PIV_Transfer\Download\ZC_GFDM0013_PROJTIME_A_00000.xls;Extended Properties=&quot;EXCEL 8.0;HDR=NO&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DTSID="{54A7BFD1-BD34-4C66-9FE8-D4E89844D08D}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Data Conversion 0 - 0"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 0 - 0"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[F12]"
+                      cachedDataType="r8"
+                      cachedName="F12"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F12]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[F12]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[F12]"
+                      name="F12"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F12]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - COMPASS_ResourceDetails"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[COMPASS_ResourceDetails]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F3]"
+                      cachedDataType="date"
+                      cachedName="F3"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[WorkDate]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F3]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F12]"
+                      cachedDataType="numeric"
+                      cachedName="F12"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[Hours]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[F12]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F1"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[IdNumber]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F2"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F4]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F4"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[TaskName]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F4]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F5]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F5"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[ExtProjectTask]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F5]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F6]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F6"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[ProjectName]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F6]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F7]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F7"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F7]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F8]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F8"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[WBS]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F8]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F9]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F9"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[Attribute]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F9]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F10]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F10"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[AAType]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F10]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].Columns[F11]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F11"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[AADesc]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F11]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[IdNumber]"
+                      dataType="nText"
+                      name="IdNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[Name]"
+                      dataType="nText"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[WorkDate]"
+                      dataType="dbTimeStamp"
+                      name="WorkDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[TaskName]"
+                      dataType="nText"
+                      name="TaskName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[ExtProjectTask]"
+                      dataType="nText"
+                      name="ExtProjectTask" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[ProjectName]"
+                      dataType="nText"
+                      name="ProjectName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[Project]"
+                      dataType="nText"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[WBS]"
+                      dataType="nText"
+                      name="WBS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[Attribute]"
+                      dataType="nText"
+                      name="Attribute" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[AAType]"
+                      dataType="nText"
+                      name="AAType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[AADesc]"
+                      dataType="nText"
+                      name="AADesc" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input].ExternalColumns[Hours]"
+                      dataType="numeric"
+                      name="Hours"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source - ZC_GFDM0013_PROJTIME_A_00000$"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">ZC_GFDM0013_PROJTIME_A_00000$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionExcel]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionExcel]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F3]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F3]"
+                      name="F3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F12]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F12]"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F12]"
+                      name="F12"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F1]"
+                      name="F1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F2]"
+                      name="F2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F4]"
+                      name="F4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F5]"
+                      name="F5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F6]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F6]"
+                      name="F6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F7]"
+                      name="F7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F8]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F8]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F8]"
+                      name="F8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F9]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F9]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F9]"
+                      name="F9"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F10]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F10]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F10]"
+                      name="F10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F11]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F11]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].Columns[F11]"
+                      name="F11"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      dataType="date"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F12]"
+                      dataType="r8"
+                      name="F12" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      dataType="wstr"
+                      length="255"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      dataType="wstr"
+                      length="255"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      dataType="wstr"
+                      length="255"
+                      name="F4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      dataType="wstr"
+                      length="255"
+                      name="F5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      dataType="wstr"
+                      length="255"
+                      name="F6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      name="F7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F8]"
+                      dataType="wstr"
+                      length="255"
+                      name="F8" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F9]"
+                      dataType="wstr"
+                      length="255"
+                      name="F9" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F10]"
+                      dataType="wstr"
+                      length="255"
+                      name="F10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output].ExternalColumns[F11]"
+                      dataType="wstr"
+                      length="255"
+                      name="F11" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F1]"
+                      name="F1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F2]"
+                      name="F2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F3]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F3]"
+                      name="F3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F4]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F4]"
+                      name="F4" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F5]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F5]"
+                      name="F5" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F6]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F6]"
+                      name="F6" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F7]"
+                      name="F7" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F8]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F8]"
+                      name="F8" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F9]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F9]"
+                      name="F9" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F10]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F10]"
+                      name="F10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F11]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F11]"
+                      name="F11" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F12]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[F12]"
+                      name="F12" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[Data Conversion Output]"
+              endId="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails.Inputs[Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[Excel Source Output]"
+              endId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Preparation SQL Task 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DTSID="{7CBD49FC-92FB-41F9-BC26-81EC7A73484E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Preparation SQL Task 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A59800F-722B-4755-98A0-A76CC8CD1786}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[COMPASS_ResourceDetails]&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{BBC95A3B-81B7-40FF-AE6D-F6D235F703BB\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{BBC95A3B-81B7-40FF-AE6D-F6D235F703BB}"
+      DTS:From="Package\Preparation SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{BBC95A3B-81B7-40FF-AE6D-F6D235F703BB}"
+      DTS:To="Package\Data Flow Task 1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Data Flow Task 1"
+          TopLeft="20.5,107.5" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Preparation SQL Task 1"
+          TopLeft="5.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{BBC95A3B-81B7-40FF-AE6D-F6D235F703BB\}]"
+          TopLeft="100.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="299,42"
+          Id="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="269,42"
+          Id="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails"
+          TopLeft="20.5,209.5" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Data Flow Task 1\Data Conversion 0 - 0"
+          TopLeft="64,107.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[Excel Source Output]"
+          TopLeft="155,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[Data Conversion Output]"
+          TopLeft="155,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task 1\Source - ZC_GFDM0013_PROJTIME_A_00000$">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task 1\Destination - COMPASS_ResourceDetails">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

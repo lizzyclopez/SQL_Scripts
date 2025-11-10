@@ -1,0 +1,663 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/17/2015 8:22:35 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="USHOSEDS131C"
+  DTS:CreatorName="AMERICAS\lopezliz"
+  DTS:Description="SSIS Package to Import the Manual Time Entered in Manual Screen"
+  DTS:DTSID="{8117593F-7989-4FC0-B676-D0E5B0323BEA}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="SSIS Package - Import Manual Data"
+  DTS:VersionGUID="{0BE48E8E-2F8E-471A-BA62-0183553549FC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{24BF2577-1A06-49ED-ABF4-C49482912D1C}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=USHOSEDS131C\PROD;Initial Catalog=R2_Import;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B9816E77-8A8F-4F46-9332-153B1D286B6B}"
+      DTS:ObjectName="SourceConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=USHOSEDS131-B;Initial Catalog=sap_import;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DTSID="{AFAB0088-E2AB-4A34-8727-E3148B32677D}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - ResourceDetails_Manual"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ResourceDetails_Manual]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[Name]"
+                      cachedDataType="nText"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[WorkDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="WorkDate"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[WorkDate]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[WorkDate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[Hours]"
+                      cachedDataType="numeric"
+                      cachedName="Hours"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[Hours]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[Hours]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[IdNumber]"
+                      cachedDataType="nText"
+                      cachedName="IdNumber"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[IdNumber]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[IdNumber]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[ExtProjectTask]"
+                      cachedDataType="nText"
+                      cachedName="ExtProjectTask"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[ExtProjectTask]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ExtProjectTask]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[ProjectName]"
+                      cachedDataType="nText"
+                      cachedName="ProjectName"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[ProjectName]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ProjectName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[TaskName]"
+                      cachedDataType="nText"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[TaskName]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[TaskName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[AAType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AAType"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[AAType]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[AAType]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[ProjectNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProjectNumber"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[ProjectNumber]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ProjectNumber]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].Columns[TaskNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TaskNumber"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[TaskNumber]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[TaskNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[Name]"
+                      dataType="nText"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[IdNumber]"
+                      dataType="nText"
+                      name="IdNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[WorkDate]"
+                      dataType="dbTimeStamp"
+                      name="WorkDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[Hours]"
+                      dataType="numeric"
+                      name="Hours"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[ExtProjectTask]"
+                      dataType="nText"
+                      name="ExtProjectTask" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[ProjectName]"
+                      dataType="nText"
+                      name="ProjectName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[TaskName]"
+                      dataType="nText"
+                      name="TaskName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[AAType]"
+                      dataType="wstr"
+                      length="50"
+                      name="AAType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[ProjectNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProjectNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input].ExternalColumns[TaskNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="TaskNumber" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source - SAP_ResourceDetails_Manual"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SAP_ResourceDetails_Manual]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[Name]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[PersNbr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[PersNbr]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[PersNbr]"
+                      name="PersNbr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[RecWBSElement]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[RecWBSElement]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[RecWBSElement]"
+                      name="RecWBSElement"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[WorkDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[WorkDate]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[WorkDate]"
+                      name="WorkDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[Hours]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[Hours]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[Hours]"
+                      name="Hours"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[IdNumber]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[IdNumber]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[IdNumber]"
+                      name="IdNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ExtProjectTask]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ExtProjectTask]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ExtProjectTask]"
+                      name="ExtProjectTask"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ParentWBS]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ParentWBS]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ParentWBS]"
+                      name="ParentWBS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ProfitCenter]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ProfitCenter]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ProfitCenter]"
+                      name="ProfitCenter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ProjectName]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ProjectName]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ProjectName]"
+                      name="ProjectName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[TaskName]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[TaskName]"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[TaskName]"
+                      name="TaskName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[AAType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[AAType]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[AAType]"
+                      name="AAType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ProjectNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ProjectNumber]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[ProjectNumber]"
+                      name="ProjectNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[TaskNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[TaskNumber]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].Columns[TaskNumber]"
+                      name="TaskNumber"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      dataType="nText"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[PersNbr]"
+                      dataType="i4"
+                      name="PersNbr" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[RecWBSElement]"
+                      dataType="nText"
+                      name="RecWBSElement" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[WorkDate]"
+                      dataType="dbTimeStamp"
+                      name="WorkDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[Hours]"
+                      dataType="numeric"
+                      name="Hours"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[IdNumber]"
+                      dataType="nText"
+                      name="IdNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ExtProjectTask]"
+                      dataType="nText"
+                      name="ExtProjectTask" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ParentWBS]"
+                      dataType="nText"
+                      name="ParentWBS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ProfitCenter]"
+                      dataType="nText"
+                      name="ProfitCenter" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ProjectName]"
+                      dataType="nText"
+                      name="ProjectName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[TaskName]"
+                      dataType="nText"
+                      name="TaskName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[AAType]"
+                      dataType="wstr"
+                      length="50"
+                      name="AAType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[ProjectNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="ProjectNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output].ExternalColumns[TaskNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="TaskNumber" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[PersNbr]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[PersNbr]"
+                      name="PersNbr" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[RecWBSElement]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[RecWBSElement]"
+                      name="RecWBSElement" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[WorkDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[WorkDate]"
+                      name="WorkDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[Hours]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[Hours]"
+                      name="Hours"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[IdNumber]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[IdNumber]"
+                      name="IdNumber" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ExtProjectTask]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ExtProjectTask]"
+                      name="ExtProjectTask" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ParentWBS]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ParentWBS]"
+                      name="ParentWBS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ProfitCenter]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ProfitCenter]"
+                      name="ProfitCenter" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ProjectName]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ProjectName]"
+                      name="ProjectName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[TaskName]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[TaskName]"
+                      name="TaskName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[AAType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[AAType]"
+                      name="AAType" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ProjectNumber]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ProjectNumber]"
+                      name="ProjectNumber" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[TaskNumber]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[TaskNumber]"
+                      name="TaskNumber" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task 1\Destination - ResourceDetails_Manual.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source - SAP_ResourceDetails_Manual.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Preparation SQL Task 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DTSID="{FF1D1314-EC42-4A79-9FE7-F7F0C65942E6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Preparation SQL Task 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{24BF2577-1A06-49ED-ABF4-C49482912D1C}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[ResourceDetails_Manual]&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{863D0395-18EE-419C-A3FA-1BF6590E2D0F\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{863D0395-18EE-419C-A3FA-1BF6590E2D0F}"
+      DTS:From="Package\Preparation SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{863D0395-18EE-419C-A3FA-1BF6590E2D0F}"
+      DTS:To="Package\Data Flow Task 1" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

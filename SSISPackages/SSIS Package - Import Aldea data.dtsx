@@ -1,0 +1,2709 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/20/2008 10:29:08 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="USHOSEDS131-A"
+  DTS:CreatorName="AMER\vz3yf9"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{9A576F46-695B-4049-B8ED-17911455C1BC}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="SSIS Package - Import Aldea data"
+  DTS:VersionBuild="78"
+  DTS:VersionGUID="{ACB4B9A7-11B8-493C-9A31-4B5169C456E0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AldeaServer.core.careader]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{40D2A05E-DDD0-4835-9EEE-E3F2D54E710B}"
+      DTS:ObjectName="AldeaServer.core.careader">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::varConnection]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=198.132.135.119;User ID=careader;Initial Catalog=core;Provider=SQLNCLI.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/uAqQbGs90GJBESdibdZdAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB+EoxAiHNJAOKRcmSS4KE5AAAAAASAAACgAAAAEAAAAKGRHZz4oW/lDSpAli5GcuEYAAAAJKwZ3P6fnC7e1nyMc4+pdzfan9Zi0m24FAAAAKoWhU2PUpYWv8XmvVqKHRSXtkCX</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[USHOSEDS131C\PROD.ALDEA_Import]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FFBAE46B-8E64-41EE-954B-7D69D47B3196}"
+      DTS:ObjectName="USHOSEDS131C\PROD.ALDEA_Import">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=USHOSEDS131C\PROD;Initial Catalog=ALDEA_Import;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="G:\Applications\PIV_Transfer\SSISPackages\SSIS Package - Import Aldea data.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{779E401E-4D55-4121-9A2E-790B33804B67}"
+      DTS:ObjectName="Aldea Data Configuration" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DB420904-F5E1-469F-BFC5-B7A452CC07A4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varAldeaPassword">
+      <DTS:VariableValue
+        DTS:DataType="8">05Webh16</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E51D272F-CFDB-40CD-9880-CFD7D6EF6E2A}"
+      DTS:Expression="@[User::varConnection]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varConnection">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=198.132.135.119;User ID=careader;Password=05Webh16;Initial Catalog=core;Provider=SQLNCLI.1;Persist Security Info=True;Auto Translate=False</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Exec Aldea_Import Stored Procedure  CleanUpAldeaData"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{eb59482c-1854-41e6-af54-d7f211e5594c}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Exec Aldea_Import Stored Procedure  CleanUpAldeaData"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5DAD3D6E-9840-4F11-A4D1-C0466CE7380D}"
+          SQLTask:SqlStatementSource="Exec ProcessAldeaDataView" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Aldea_Import AldeaData table"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{bd54d7a0-503d-48bb-82f8-0ea96c7a0a2c}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Aldea_Import AldeaData table">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Aldea_Import AldeaData table\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_ID]"
+                      cachedDataType="numeric"
+                      cachedName="REQUEST_ID"
+                      cachedPrecision="7"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_ID]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[ORIGINATION_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ORIGINATION_DATE"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[ORIGINATION_DATE]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_STATUS]"
+                      cachedDataType="numeric"
+                      cachedName="REQUEST_STATUS"
+                      cachedPrecision="7"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_STATUS_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="REQUEST_STATUS_DESCRIPTION"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_SUMMARY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="REQUEST_SUMMARY"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_SUMMARY]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_TEXT]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="REQUEST_TEXT"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TEXT]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[EXTERNAL_REF_NUMBER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="EXTERNAL_REF_NUMBER"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[EXTERNAL_REF_NUMBER]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_OWNER_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="82"
+                      cachedName="REQUEST_OWNER_NAME"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_OWNER_NAME]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[RESPONSIBLE_USER_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="82"
+                      cachedName="RESPONSIBLE_USER_NAME"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_USER_NAME]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="OWNER_ORGANIZATION_DESCRIPTION"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[OWNER_ORGANIZATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="RESPONSIBLE_ORGANIZATION_DESCRIPTION"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_TYPE_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="REQUEST_TYPE_DESCRIPTION"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TYPE_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUESTED_COMPLETION_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="REQUESTED_COMPLETION_DATE"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUESTED_COMPLETION_DATE]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[RANK]"
+                      cachedDataType="numeric"
+                      cachedName="RANK"
+                      cachedPrecision="7"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RANK]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[REQUEST_PRIORITY_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="REQUEST_PRIORITY_DESCRIPTION"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_PRIORITY_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[TOTAL_ACTUAL_HOURS]"
+                      cachedDataType="numeric"
+                      cachedName="TOTAL_ACTUAL_HOURS"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[TOTAL_ACTUAL_HOURS]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Tower]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Tower"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Tower]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Change_Log_Text]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Change_Log_Text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Change_Log_Text]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Dates_Actual_Implementation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Dates_Actual_Implementation"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Actual_Implementation]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Dates_Target_Implementation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Dates_Target_Implementation"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Target_Implementation]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Dates_Estimate_Submitted]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Dates_Estimate_Submitted"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Estimate_Submitted]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Dates_EDS_Acknowledge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Dates_EDS_Acknowledge"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_EDS_Acknowledge]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[CO_Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="CO_Status"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Status]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Estimated_Hours_Current]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Estimated_Hours_Current"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Estimated_Hours_Current_Offshore_Part]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Estimated_Hours_Current_Offshore_Part"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current_Offshore_Part]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Delivery_Leader]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Delivery_Leader"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Delivery_Leader]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Programme_Manager]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Programme_Manager"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Programme_Manager]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[CO_Sub_Division]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="CO_Sub_Division"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Sub_Division]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[CO_Division]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="CO_Division"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Division]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[Estimated_Hours_Orig]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Estimated_Hours_Orig"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Orig]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[CO_Requester]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="CO_Requester"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Requester]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[PM_OR_TEAM_LEAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="PM_OR_TEAM_LEAD"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[PM_OR_TEAM_LEAD]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input].Columns[APPLICATION_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="APPLICATION_DESCRIPTION"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[APPLICATION_DESCRIPTION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_ID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_ID]"
+                      name="Copy of REQUEST_ID"
+                      precision="7"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ORIGINATION_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ORIGINATION_DATE]"
+                      name="Copy of ORIGINATION_DATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[ORIGINATION_DATE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_STATUS]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_STATUS]"
+                      name="Copy of REQUEST_STATUS"
+                      precision="7"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_STATUS_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_STATUS_DESCRIPTION]"
+                      name="Copy of REQUEST_STATUS_DESCRIPTION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS_DESCRIPTION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_SUMMARY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="80"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_SUMMARY]"
+                      name="Copy of REQUEST_SUMMARY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_SUMMARY]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_TEXT]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_TEXT]"
+                      name="Copy of REQUEST_TEXT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TEXT]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of EXTERNAL_REF_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of EXTERNAL_REF_NUMBER]"
+                      name="Copy of EXTERNAL_REF_NUMBER"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[EXTERNAL_REF_NUMBER]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_OWNER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="82"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_OWNER_NAME]"
+                      name="Copy of REQUEST_OWNER_NAME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_OWNER_NAME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RESPONSIBLE_USER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="82"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RESPONSIBLE_USER_NAME]"
+                      name="Copy of RESPONSIBLE_USER_NAME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_USER_NAME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OWNER_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OWNER_ORGANIZATION_DESCRIPTION]"
+                      name="Copy of OWNER_ORGANIZATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[OWNER_ORGANIZATION_DESCRIPTION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      name="Copy of RESPONSIBLE_ORGANIZATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_TYPE_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_TYPE_DESCRIPTION]"
+                      name="Copy of REQUEST_TYPE_DESCRIPTION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TYPE_DESCRIPTION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUESTED_COMPLETION_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUESTED_COMPLETION_DATE]"
+                      name="Copy of REQUESTED_COMPLETION_DATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUESTED_COMPLETION_DATE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RANK]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RANK]"
+                      name="Copy of RANK"
+                      precision="7"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RANK]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_PRIORITY_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_PRIORITY_DESCRIPTION]"
+                      name="Copy of REQUEST_PRIORITY_DESCRIPTION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_PRIORITY_DESCRIPTION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TOTAL_ACTUAL_HOURS]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TOTAL_ACTUAL_HOURS]"
+                      name="Copy of TOTAL_ACTUAL_HOURS"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[TOTAL_ACTUAL_HOURS]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Tower]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Tower]"
+                      name="Copy of Tower"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Tower]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Change_Log_Text]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Change_Log_Text]"
+                      name="Copy of Change_Log_Text"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Change_Log_Text]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Dates_Actual_Implementation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Dates_Actual_Implementation]"
+                      name="Copy of Dates_Actual_Implementation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Actual_Implementation]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Dates_Target_Implementation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Dates_Target_Implementation]"
+                      name="Copy of Dates_Target_Implementation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Target_Implementation]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Dates_Estimate_Submitted]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Dates_Estimate_Submitted]"
+                      name="Copy of Dates_Estimate_Submitted"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Estimate_Submitted]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Dates_EDS_Acknowledge]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Dates_EDS_Acknowledge]"
+                      name="Copy of Dates_EDS_Acknowledge"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_EDS_Acknowledge]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CO_Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CO_Status]"
+                      name="Copy of CO_Status"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Status]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Estimated_Hours_Current]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Estimated_Hours_Current]"
+                      name="Copy of Estimated_Hours_Current"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Estimated_Hours_Current_Offshore_Part]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Estimated_Hours_Current_Offshore_Part]"
+                      name="Copy of Estimated_Hours_Current_Offshore_Part"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current_Offshore_Part]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Delivery_Leader]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Delivery_Leader]"
+                      name="Copy of Delivery_Leader"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Delivery_Leader]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Programme_Manager]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Programme_Manager]"
+                      name="Copy of Programme_Manager"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Programme_Manager]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CO_Sub_Division]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CO_Sub_Division]"
+                      name="Copy of CO_Sub_Division"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Sub_Division]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CO_Division]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CO_Division]"
+                      name="Copy of CO_Division"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Division]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Estimated_Hours_Orig]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Estimated_Hours_Orig]"
+                      name="Copy of Estimated_Hours_Orig"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Orig]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CO_Requester]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CO_Requester]"
+                      name="Copy of CO_Requester"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Requester]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PM_OR_TEAM_LEAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PM_OR_TEAM_LEAD]"
+                      name="Copy of PM_OR_TEAM_LEAD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[PM_OR_TEAM_LEAD]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of APPLICATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of APPLICATION_DESCRIPTION]"
+                      name="Copy of APPLICATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[APPLICATION_DESCRIPTION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="R2 Aldea Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[AldeaDataView]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[USHOSEDS131C\PROD.ALDEA_Import]"
+                  connectionManagerRefId="Package.ConnectionManagers[USHOSEDS131C\PROD.ALDEA_Import]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[REQUEST_ID]"
+                      cachedDataType="numeric"
+                      cachedName="REQUEST_ID"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_ID]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_ID]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[ORIGINATION_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ORIGINATION_DATE"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[ORIGINATION_DATE]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[ORIGINATION_DATE]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[REQUEST_STATUS]"
+                      cachedDataType="numeric"
+                      cachedName="REQUEST_STATUS"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_STATUS]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[REQUEST_SUMMARY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="REQUEST_SUMMARY"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_SUMMARY]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_SUMMARY]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[REQUEST_TEXT]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="REQUEST_TEXT"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_TEXT]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TEXT]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[EXTERNAL_REF_NUMBER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="EXTERNAL_REF_NUMBER"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[EXTERNAL_REF_NUMBER]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[EXTERNAL_REF_NUMBER]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[REQUEST_OWNER_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="82"
+                      cachedName="REQUEST_OWNER_NAME"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_OWNER_NAME]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_OWNER_NAME]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[RESPONSIBLE_USER_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="82"
+                      cachedName="RESPONSIBLE_USER_NAME"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[RESPONSIBLE_USER_NAME]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_USER_NAME]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="OWNER_ORGANIZATION_DESCRIPTION"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[OWNER_ORGANIZATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="RESPONSIBLE_ORGANIZATION_DESCRIPTION"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[REQUEST_TYPE_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="REQUEST_TYPE_DESCRIPTION"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_TYPE_DESCRIPTION]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TYPE_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[RANK]"
+                      cachedDataType="numeric"
+                      cachedName="RANK"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[RANK]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RANK]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[REQUEST_PRIORITY_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="REQUEST_PRIORITY_DESCRIPTION"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_PRIORITY_DESCRIPTION]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_PRIORITY_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[REQUESTED_COMPLETION_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="REQUESTED_COMPLETION_DATE"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUESTED_COMPLETION_DATE]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUESTED_COMPLETION_DATE]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[APPLICATION_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="APPLICATION_DESCRIPTION"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[APPLICATION_DESCRIPTION]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[APPLICATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[TOTAL_ACTUAL_HOURS]"
+                      cachedDataType="numeric"
+                      cachedName="TOTAL_ACTUAL_HOURS"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_ACTUAL_HOURS]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[TOTAL_ACTUAL_HOURS]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Tower]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Tower"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Tower]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Tower]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[CO_Requester]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="CO_Requester"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[CO_Requester]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Requester]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[PM_OR_TEAM_LEAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="PM_OR_TEAM_LEAD"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[PM_OR_TEAM_LEAD]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[PM_OR_TEAM_LEAD]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Estimated_Hours_Orig]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Estimated_Hours_Orig"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Estimated_Hours_Orig]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Orig]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Estimated_Hours_Current]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Estimated_Hours_Current"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Estimated_Hours_Current]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[CO_Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="CO_Status"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[CO_Status]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Status]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Dates_EDS_Acknowledge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Dates_EDS_Acknowledge"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Dates_EDS_Acknowledge]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_EDS_Acknowledge]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Dates_Estimate_Submitted]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Dates_Estimate_Submitted"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Dates_Estimate_Submitted]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Estimate_Submitted]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Dates_Target_Implementation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Dates_Target_Implementation"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Dates_Target_Implementation]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Target_Implementation]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Dates_Actual_Implementation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Dates_Actual_Implementation"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Dates_Actual_Implementation]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Actual_Implementation]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Change_Log_Text]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Change_Log_Text"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Change_Log_Text]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Change_Log_Text]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[CO_Division]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="CO_Division"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[CO_Division]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Division]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[CO_Sub_Division]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="CO_Sub_Division"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[CO_Sub_Division]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Sub_Division]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Programme_Manager]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Programme_Manager"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Programme_Manager]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Programme_Manager]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Delivery_Leader]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Delivery_Leader"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Delivery_Leader]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Delivery_Leader]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Estimated_Hours_Current_Offshore_Part]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Estimated_Hours_Current_Offshore_Part"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Estimated_Hours_Current_Offshore_Part]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current_Offshore_Part]" />
+                    <inputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].Columns[Copy of REQUEST_STATUS_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="Copy of REQUEST_STATUS_DESCRIPTION"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_STATUS_DESCRIPTION]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of REQUEST_STATUS_DESCRIPTION]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_ID]"
+                      dataType="numeric"
+                      name="REQUEST_ID"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_OWNER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="82"
+                      name="REQUEST_OWNER_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="OWNER_ORGANIZATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[RESPONSIBLE_USER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="82"
+                      name="RESPONSIBLE_USER_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="RESPONSIBLE_ORGANIZATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_TYPE_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="REQUEST_TYPE_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_SUMMARY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="REQUEST_SUMMARY" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_STATUS]"
+                      dataType="numeric"
+                      name="REQUEST_STATUS"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_STATUS_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="REQUEST_STATUS_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_TEXT]"
+                      codePage="1252"
+                      dataType="text"
+                      name="REQUEST_TEXT" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUEST_PRIORITY_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="REQUEST_PRIORITY_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[RANK]"
+                      dataType="numeric"
+                      name="RANK"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[EXTERNAL_REF_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="EXTERNAL_REF_NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[REQUESTED_COMPLETION_DATE]"
+                      dataType="dbTimeStamp"
+                      name="REQUESTED_COMPLETION_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[ORIGINATION_DATE]"
+                      dataType="dbTimeStamp"
+                      name="ORIGINATION_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[CO_Division]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="CO_Division" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[CO_Sub_Division]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="CO_Sub_Division" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[APPLICATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="APPLICATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Tower]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Tower" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[CO_Requester]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="CO_Requester" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Programme_Manager]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Programme_Manager" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Delivery_Leader]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Delivery_Leader" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[PM_OR_TEAM_LEAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="PM_OR_TEAM_LEAD" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_ACTUAL_HOURS]"
+                      dataType="numeric"
+                      name="TOTAL_ACTUAL_HOURS"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Estimated_Hours_Orig]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Estimated_Hours_Orig" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Estimated_Hours_Current]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Estimated_Hours_Current" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Estimated_Hours_Current_Offshore_Part]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Estimated_Hours_Current_Offshore_Part" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[CO_Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="CO_Status" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Dates_EDS_Acknowledge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Dates_EDS_Acknowledge" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Dates_Estimate_Submitted]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Dates_Estimate_Submitted" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Dates_Target_Implementation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Dates_Target_Implementation" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Dates_Actual_Implementation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Dates_Actual_Implementation" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input].ExternalColumns[Change_Log_Text]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Change_Log_Text" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source - AldeaExtract"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CAREADER_REQUEST_VIEW]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AldeaServer.core.careader]"
+                  connectionManagerRefId="Package.ConnectionManagers[AldeaServer.core.careader]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_ID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_ID]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_ID]"
+                      name="REQUEST_ID"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[ORIGINATION_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[ORIGINATION_DATE]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[ORIGINATION_DATE]"
+                      name="ORIGINATION_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_STATUS]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS]"
+                      name="REQUEST_STATUS"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_STATUS_DESCRIPTION]"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_STATUS_DESCRIPTION]"
+                      name="REQUEST_STATUS_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_SUMMARY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_SUMMARY]"
+                      length="80"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_SUMMARY]"
+                      name="REQUEST_SUMMARY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TEXT]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_TEXT]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TEXT]"
+                      name="REQUEST_TEXT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[EXTERNAL_REF_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[EXTERNAL_REF_NUMBER]"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[EXTERNAL_REF_NUMBER]"
+                      name="EXTERNAL_REF_NUMBER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_OWNER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_OWNER_NAME]"
+                      length="82"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_OWNER_NAME]"
+                      name="REQUEST_OWNER_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_USER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[RESPONSIBLE_USER_NAME]"
+                      length="82"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_USER_NAME]"
+                      name="RESPONSIBLE_USER_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      name="OWNER_ORGANIZATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      name="RESPONSIBLE_ORGANIZATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TYPE_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_TYPE_DESCRIPTION]"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_TYPE_DESCRIPTION]"
+                      name="REQUEST_TYPE_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RANK]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[RANK]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[RANK]"
+                      name="RANK"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_PRIORITY_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_PRIORITY_DESCRIPTION]"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUEST_PRIORITY_DESCRIPTION]"
+                      name="REQUEST_PRIORITY_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUESTED_COMPLETION_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUESTED_COMPLETION_DATE]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[REQUESTED_COMPLETION_DATE]"
+                      name="REQUESTED_COMPLETION_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[APPLICATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[APPLICATION_DESCRIPTION]"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[APPLICATION_DESCRIPTION]"
+                      name="APPLICATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[TOTAL_ACTUAL_HOURS]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[TOTAL_ACTUAL_HOURS]"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[TOTAL_ACTUAL_HOURS]"
+                      name="TOTAL_ACTUAL_HOURS"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Tower]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Tower]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Tower]"
+                      name="Tower"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Requester]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[CO_Requester]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Requester]"
+                      name="CO_Requester"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[PM_OR_TEAM_LEAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[PM_OR_TEAM_LEAD]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[PM_OR_TEAM_LEAD]"
+                      name="PM_OR_TEAM_LEAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Orig]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Estimated_Hours_Orig]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Orig]"
+                      name="Estimated_Hours_Orig"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Estimated_Hours_Current]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current]"
+                      name="Estimated_Hours_Current"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[CO_Status]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Status]"
+                      name="CO_Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_EDS_Acknowledge]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Dates_EDS_Acknowledge]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_EDS_Acknowledge]"
+                      name="Dates_EDS_Acknowledge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Estimate_Submitted]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Dates_Estimate_Submitted]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Estimate_Submitted]"
+                      name="Dates_Estimate_Submitted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Target_Implementation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Dates_Target_Implementation]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Target_Implementation]"
+                      name="Dates_Target_Implementation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Actual_Implementation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Dates_Actual_Implementation]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Dates_Actual_Implementation]"
+                      name="Dates_Actual_Implementation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Change_Log_Text]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Change_Log_Text]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Change_Log_Text]"
+                      name="Change_Log_Text"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Division]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[CO_Division]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Division]"
+                      name="CO_Division"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Sub_Division]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[CO_Sub_Division]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[CO_Sub_Division]"
+                      name="CO_Sub_Division"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Programme_Manager]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Programme_Manager]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Programme_Manager]"
+                      name="Programme_Manager"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Delivery_Leader]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Delivery_Leader]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Delivery_Leader]"
+                      name="Delivery_Leader"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current_Offshore_Part]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Estimated_Hours_Current_Offshore_Part]"
+                      length="2000"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].Columns[Estimated_Hours_Current_Offshore_Part]"
+                      name="Estimated_Hours_Current_Offshore_Part"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_ID]"
+                      dataType="i4"
+                      name="REQUEST_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[ORIGINATION_DATE]"
+                      dataType="dbTimeStamp"
+                      name="ORIGINATION_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_STATUS]"
+                      dataType="numeric"
+                      name="REQUEST_STATUS"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_STATUS_DESCRIPTION]"
+                      dataType="wstr"
+                      length="40"
+                      name="REQUEST_STATUS_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_SUMMARY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="REQUEST_SUMMARY" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_TEXT]"
+                      codePage="1252"
+                      dataType="text"
+                      name="REQUEST_TEXT" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[EXTERNAL_REF_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="EXTERNAL_REF_NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_OWNER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="82"
+                      name="REQUEST_OWNER_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[RESPONSIBLE_USER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="82"
+                      name="RESPONSIBLE_USER_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="OWNER_ORGANIZATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="RESPONSIBLE_ORGANIZATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_TYPE_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="REQUEST_TYPE_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[RANK]"
+                      dataType="numeric"
+                      name="RANK"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUEST_PRIORITY_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="REQUEST_PRIORITY_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[REQUESTED_COMPLETION_DATE]"
+                      dataType="dbTimeStamp"
+                      name="REQUESTED_COMPLETION_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[APPLICATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="APPLICATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[TOTAL_ACTUAL_HOURS]"
+                      dataType="numeric"
+                      name="TOTAL_ACTUAL_HOURS"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Tower]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Tower" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[CO_Requester]"
+                      codePage="1252"
+                      dataType="text"
+                      name="CO_Requester" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[PM_OR_TEAM_LEAD]"
+                      codePage="1252"
+                      dataType="text"
+                      name="PM_OR_TEAM_LEAD" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Estimated_Hours_Orig]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Estimated_Hours_Orig" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Estimated_Hours_Current]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Estimated_Hours_Current" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[CO_Status]"
+                      codePage="1252"
+                      dataType="text"
+                      name="CO_Status" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Dates_EDS_Acknowledge]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Dates_EDS_Acknowledge" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Dates_Estimate_Submitted]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Dates_Estimate_Submitted" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Dates_Target_Implementation]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Dates_Target_Implementation" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Dates_Actual_Implementation]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Dates_Actual_Implementation" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Change_Log_Text]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Change_Log_Text" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[CO_Division]"
+                      codePage="1252"
+                      dataType="text"
+                      name="CO_Division" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[CO_Sub_Division]"
+                      codePage="1252"
+                      dataType="text"
+                      name="CO_Sub_Division" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Programme_Manager]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Programme_Manager" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Delivery_Leader]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Delivery_Leader" />
+                    <externalMetadataColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output].ExternalColumns[Estimated_Hours_Current_Offshore_Part]"
+                      codePage="1252"
+                      dataType="text"
+                      name="Estimated_Hours_Current_Offshore_Part" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_ID]"
+                      name="REQUEST_ID" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[ORIGINATION_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[ORIGINATION_DATE]"
+                      name="ORIGINATION_DATE" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_STATUS]"
+                      dataType="numeric"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_STATUS]"
+                      name="REQUEST_STATUS"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_STATUS_DESCRIPTION]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_STATUS_DESCRIPTION]"
+                      name="REQUEST_STATUS_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_SUMMARY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_SUMMARY]"
+                      name="REQUEST_SUMMARY" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_TEXT]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_TEXT]"
+                      name="REQUEST_TEXT" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[EXTERNAL_REF_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[EXTERNAL_REF_NUMBER]"
+                      name="EXTERNAL_REF_NUMBER" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_OWNER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="82"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_OWNER_NAME]"
+                      name="REQUEST_OWNER_NAME" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[RESPONSIBLE_USER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="82"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[RESPONSIBLE_USER_NAME]"
+                      name="RESPONSIBLE_USER_NAME" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[OWNER_ORGANIZATION_DESCRIPTION]"
+                      name="OWNER_ORGANIZATION_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[RESPONSIBLE_ORGANIZATION_DESCRIPTION]"
+                      name="RESPONSIBLE_ORGANIZATION_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_TYPE_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_TYPE_DESCRIPTION]"
+                      name="REQUEST_TYPE_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[RANK]"
+                      dataType="numeric"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[RANK]"
+                      name="RANK"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_PRIORITY_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUEST_PRIORITY_DESCRIPTION]"
+                      name="REQUEST_PRIORITY_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUESTED_COMPLETION_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[REQUESTED_COMPLETION_DATE]"
+                      name="REQUESTED_COMPLETION_DATE" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[APPLICATION_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[APPLICATION_DESCRIPTION]"
+                      name="APPLICATION_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[TOTAL_ACTUAL_HOURS]"
+                      dataType="numeric"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[TOTAL_ACTUAL_HOURS]"
+                      name="TOTAL_ACTUAL_HOURS"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Tower]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Tower]"
+                      name="Tower" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[CO_Requester]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[CO_Requester]"
+                      name="CO_Requester" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[PM_OR_TEAM_LEAD]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[PM_OR_TEAM_LEAD]"
+                      name="PM_OR_TEAM_LEAD" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Estimated_Hours_Orig]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Estimated_Hours_Orig]"
+                      name="Estimated_Hours_Orig" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Estimated_Hours_Current]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Estimated_Hours_Current]"
+                      name="Estimated_Hours_Current" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[CO_Status]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[CO_Status]"
+                      name="CO_Status" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Dates_EDS_Acknowledge]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Dates_EDS_Acknowledge]"
+                      name="Dates_EDS_Acknowledge" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Dates_Estimate_Submitted]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Dates_Estimate_Submitted]"
+                      name="Dates_Estimate_Submitted" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Dates_Target_Implementation]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Dates_Target_Implementation]"
+                      name="Dates_Target_Implementation" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Dates_Actual_Implementation]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Dates_Actual_Implementation]"
+                      name="Dates_Actual_Implementation" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Change_Log_Text]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Change_Log_Text]"
+                      name="Change_Log_Text" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[CO_Division]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[CO_Division]"
+                      name="CO_Division" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[CO_Sub_Division]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[CO_Sub_Division]"
+                      name="CO_Sub_Division" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Programme_Manager]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Programme_Manager]"
+                      name="Programme_Manager" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Delivery_Leader]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Delivery_Leader]"
+                      name="Delivery_Leader" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Estimated_Hours_Current_Offshore_Part]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[Estimated_Hours_Current_Offshore_Part]"
+                      name="Estimated_Hours_Current_Offshore_Part" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Aldea_Import AldeaData table.Paths[Data Conversion Output]"
+              endId="Package\Load Aldea_Import AldeaData table\R2 Aldea Table.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Load Aldea_Import AldeaData table\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Load Aldea_Import AldeaData table.Paths[OLE DB Source Output]"
+              endId="Package\Load Aldea_Import AldeaData table\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Aldea_Import AldeaData table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3a97b658-18c3-4fb8-870e-b488b34521f6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Aldea_Import AldeaData table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5DAD3D6E-9840-4F11-A4D1-C0466CE7380D}"
+          SQLTask:SqlStatementSource="Insert Into R2_Import..Log (Text) Values ('&lt;New Process Start&gt;')&#xA;Insert Into R2_Import..Log (Text) Values ('Process_Aldea - Start at '+ Convert(VarChar(25),GetDate(),120))&#xA;&#xA;-- Perform a task to delay for a ms&#xA;declare @wait datetime&#xA;Set @wait = getdate() + .00001&#xA;While (getdate() &lt; @wait)&#xA;Begin&#xA;&#x9;Continue&#xA;End&#xA;&#xA;TRUNCATE TABLE AldeaDataView&#xA;&#xA;IF (@@Error = 0)&#xA;     BEGIN&#xA;&#x9;Insert Into R2_Import..Log (Text) Values ('Process_Aldea - Aldea_Import.AldeaDataView table truncated')&#xA;     END&#xA;ELSE&#xA;     BEGIN&#xA;&#x9;Insert Into R2_Import..Log (Text) Values ('Process_Aldea - ERROR performing truncate on  table AldeaDataView')&#xA;     END&#xA;   " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{f245baa4-fedd-4764-86ec-449cce207baa}"
+      DTS:From="Package\Truncate Aldea_Import AldeaData table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Aldea_Import AldeaData table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5f8fff09-8e35-4fcb-9e54-707cab3b912d}"
+      DTS:From="Package\Load Aldea_Import AldeaData table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Exec Aldea_Import Stored Procedure  CleanUpAldeaData" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="219,44"
+          Id="Package\Exec Aldea_Import Stored Procedure  CleanUpAldeaData"
+          TopLeft="5.5,205.160377358491" />
+        <NodeLayout
+          Size="199,44"
+          Id="Package\Load Aldea_Import AldeaData table"
+          TopLeft="15.4622641509434,93.1981132075472" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Truncate Aldea_Import AldeaData table"
+          TopLeft="13.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="146.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31.5377358490566,45.6981132075472"
+              Start="0,0"
+              End="-31.5377358490566,38.1981132075472">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8490566037736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.8490566037736"
+                    Point2="0,22.8490566037736"
+                    Point3="-4,22.8490566037736" />
+                  <mssgle:LineSegment
+                    End="-27.5377358490566,22.8490566037736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.5377358490566,22.8490566037736"
+                    Point2="-31.5377358490566,22.8490566037736"
+                    Point3="-31.5377358490566,26.8490566037736" />
+                  <mssgle:LineSegment
+                    End="-31.5377358490566,38.1981132075472" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="114.783018867925,137.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0377358490565598,68.0377358490566"
+              Start="0,0"
+              End="0.0377358490565598,60.5377358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:LineSegment
+                    End="0.0377358490565598,34" />
+                  <mssgle:LineSegment
+                    End="0.0377358490565598,60.5377358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Aldea_Import AldeaData table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Aldea_Import AldeaData table\Data Conversion"
+          TopLeft="17.4622641509434,80.5566037735849" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Aldea_Import AldeaData table\R2 Aldea Table"
+          TopLeft="5.5,168.443396226415" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract"
+          TopLeft="10.2924528301887,5.5" />
+        <EdgeLayout
+          Id="Package\Load Aldea_Import AldeaData table.Paths[Data Conversion Output]"
+          TopLeft="85.3490566037736,124.481132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.9622641509434,43.9622641509434"
+              Start="0,0"
+              End="-11.9622641509434,36.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-11.9622641509434,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-11.9622641509434,36.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Aldea_Import AldeaData table.Paths[OLE DB Source Output]"
+          TopLeft="78.1792452830189,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="7.16981132075472,31.1320754716981"
+              Start="0,0"
+              End="7.16981132075472,23.6320754716981">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5471698113207" />
+                  <mssgle:LineSegment
+                    End="7.16981132075472,15.5471698113207" />
+                  <mssgle:LineSegment
+                    End="7.16981132075472,23.6320754716981" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Aldea_Import AldeaData table\R2 Aldea Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Aldea_Import AldeaData table\Source - AldeaExtract">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
