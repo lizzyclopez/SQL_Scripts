@@ -1,0 +1,45 @@
+GetSharesFQA
+Description:  Extract fqayymmdd.xml file.
+Triggers: 8:05am Daily 
+Action:  G:\Applications\Shares\SCSCAirlineApp\SharesStats\GetSharesFQA.vbs
+
+GetSharesFQB
+Description:  Extract fqbyymmdd.xml file.
+Triggers:  8:06am Daily
+Action:  G:\Applications\Shares\SCSCAirlineApp\SharesStats\GetSharesFQB.vbs
+
+ExtractMailAttachment
+This process executes a program that extracts the attachment from the mail server. It runs for R2 Compass Extract and for CR MIPS Extract. It places the files in the F drive where a SQL job copies the file to production.
+Triggers:  none
+Action:  G:\Applications\Extract_Mail_Attachment.exe
+
+CopyReportToSharepoint
+Description:  CopyReportToSharepoint
+Triggers: none
+Action: G:\Applications\Compute_Services\CR_UploadReport_SPS.exe
+
+MonthlyMipsReport
+Description: This process executes a program that checks if the date is the first of the month. If it is the first of the month, it creates a new report and updates it. If it is not the first of the month, it retrieves the report from sharepoint and udpates it.
+Triggers: none
+Action: G:\Applications\Compute_Services\MIPS\MIPS_XLS.exe
+
+
+
+--------------UNZIP COMPASS FILE.-----------
+DECLARE @FileExists INT, @strSQL as varchar(1000), @profile_name varchar(255) 
+
+--- Unzip the extracted COMPASS file.
+exec master..xp_cmdshell 'C:\"Program Files"\7-Zip\7z.exe e "G:\Applications\PIV_Transfer\CompassExtract\Daily\ZC_GFDM0013_PROJTIME_A.ZIP" "-oG:\Applications\PIV_Transfer\CompassExtract\Daily\"'
+
+-- Check if file was unzipped and send email notification.
+exec master.dbo.xp_fileexist 'G:\Applications\PIV_Transfer\CompassExtract\Daily\ZC_GFDM0013_PROJTIME_A_00000.xls', @FileExists OUTPUT
+If @FileExists = 1 
+	begin
+	insert into R2_Import..log (StatusCode, ProcessName, Text) values('S', 'COMPASS Load',  'COMPASS file was unzipped successfully.')	
+	--exec msdb.dbo.sp_send_dbmail @profile_name = 'SQL_DBMail', @recipients = 'lizzy.lopez@dxc.com', @subject = 'R2 131C Compass File Unzipped Successfully', @body = 'Compass file was unzipped successfully.'
+	end
+else
+	begin
+	insert into R2_Import..log (StatusCode, ProcessName, Text) values('E', 'COMPASS Load',  'COMPASS file was not unzipped.')	
+	exec msdb.dbo.sp_send_dbmail @profile_name = 'SQL_DBMail', @recipients = 'lizzy.lopez@dxc.com', @subject = 'R2 131C Compass File Not Unzipped!', @body = 'Did not unzip the Compass file. Check to see if the Compass file was received.'
+	end
